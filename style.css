@@ -1,0 +1,517 @@
+/* ===================== RESET ===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===================== ROOT ===================== */
+:root {
+  --bg-main: #ffffff;
+  --bg-section: #f8fafc;
+  --primary: #2563eb;
+  --dark: #0f172a;
+  --gray: #64748b;
+  --border: #e5e7eb;
+}
+
+/* ===================== BODY ===================== */
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--dark);
+  line-height: 1.7;
+}
+
+.section + .section {
+  border-top: 1px solid #e5e7eb;
+}
+
+/* ===================== HEADER ===================== */
+.header {
+  min-height: 100vh;
+  padding: 16px 24px;
+}
+
+/* ===================== NAVBAR ===================== */
+.header_nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.head_logo {
+  height: 60px;
+  cursor: pointer;
+}
+
+.nav_links {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.nav_link,
+.nav__link {
+  text-decoration: none;
+  color: var(--dark);
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.nav_link::after,
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.25s ease;
+}
+
+.nav_link:hover,
+.nav__link:hover {
+  color: var(--primary);
+}
+
+.nav_link:hover::after,
+.nav__link:hover::after {
+  width: 100%;
+}
+
+.btn {
+  display: inline-block;
+  background: none;
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: 500px;
+  color: var(--color-primary);
+  border: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 24px;
+  max-width: 24%;
+  color: #2563eb;
+}
+
+/* ===================== HEADER ===================== */
+.header_title {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 48px;
+  margin-top: 48px;
+}
+
+/* SOL TARAF (TEXT) */
+.header_text {
+  padding: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* 👈 h1-h4-h5 arası boşluk */
+}
+
+/* H1 */
+.header_text h1 {
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+/* H4 */
+.header_text h4 {
+  padding: 16px;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+/* H5 */
+.header_text h5 {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+  padding: 8px;
+  color: var(--gray);
+  max-width: 500px;
+}
+
+/* SAĞ TARAF (IMAGE) */
+.person_img {
+  width: 100%;
+  max-width: 400px;
+  justify-self: center;
+}
+
+/* ===================== SECTION COMMON ===================== */
+.section {
+  padding: 64px 36px;
+}
+
+.section--titles,
+.section__title {
+  margin-bottom: 64px;
+}
+
+.section--description,
+.section__description {
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.section--titles h3,
+.section__header {
+  font-size: 12px;
+  font-weight: 500;
+  margin: 24px;
+}
+
+/* ===================== ABOUT ===================== */
+#section--about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.8rem;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* Başlık alanı */
+.section--titles {
+  grid-column: 1 / -1;
+}
+
+/* Metin kutuları */
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.about_header {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.about p {
+  font-size: 1.4rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* Görseller */
+.about_img,
+.about__img {
+  width: 100%;
+  border-radius: 1.8rem;
+  box-shadow: 0 1.5rem 3.5rem rgba(0, 0, 0, 0.08);
+}
+
+/* ===================== LAZY IMAGE ===================== */
+.lazy_img {
+  filter: blur(16px);
+  transform: scale(1.05);
+  transition: all 0.6s ease;
+}
+
+.lazy_img.loaded {
+  filter: blur(0);
+  transform: scale(1);
+}
+
+/* ===================== SKILLS ===================== */
+
+#section--skills {
+  background-color: var(--bg-section);
+}
+
+.skills {
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 90px 48px;
+  position: relative;
+  border-radius: 50px;
+  margin-top: 96px;
+}
+
+.skills__tab-container {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.skills__tab {
+  display: flex;
+  align-items: center; /* 🔥 Dikey ortalama */
+  justify-content: center; /* Yatay ortalama */
+  gap: 12px; /* span ile yazı arası */
+
+  border: none;
+  border-radius: 50px;
+  padding: 16px 48px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: black;
+}
+
+.skills__tab span {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  color: black;
+}
+
+.skills__tab--1 {
+  background-color: #ffcb03;
+}
+.skills__tab--2 {
+  background-color: #5ec576;
+}
+.skills__tab--3 {
+  background-color: #ff585f;
+}
+
+.skills__tab:hover {
+  transform: translateY(-6px);
+}
+
+.skills__tab--active {
+  transform: translateY(-6px);
+}
+
+.skills__content {
+  display: none;
+  column-gap: 36px;
+  row-gap: 24px;
+}
+
+.skills__content--active {
+  display: grid;
+}
+
+.skills__header {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.skills__content p {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.7;
+  padding: 48px 32px;
+}
+
+/* ===================== EDUCATION ===================== */
+#section--education h4 {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--gray);
+  margin: 120px 36px;
+}
+
+/* ===================== PROJECTS ===================== */
+#section--projects {
+  background-color: var(--bg-section);
+}
+
+.project_images {
+  width: 800px;
+  height: auto;
+  display: grid;
+  grid-template-rows: 100px 200px;
+  grid-template-columns: 1fr 2fr;
+}
+
+.slider {
+  position: relative;
+  height: 700px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: transform 0.5s ease;
+}
+
+.slider__btn {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  border: none;
+  background: rgba(255, 255, 255, 0.7);
+  font-family: inherit;
+  color: #333;
+  border-radius: 50%;
+  height: 90px;
+  width: 90px;
+  font-size: 54px;
+  cursor: pointer;
+}
+
+.slider__btn--left {
+  left: 6%;
+  transform: translate(-50%, -50%);
+}
+
+.slider__btn--right {
+  right: 6%;
+  transform: translate(50%, -50%);
+}
+.dots {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+.dots__dot {
+  border: none;
+  background-color: #b9b9b9;
+  opacity: 0.7;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  margin-right: 24px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.dots__dot:last-child {
+  margin: 0;
+}
+
+.dots__dot--active {
+  background-color: #888;
+  opacity: 1;
+}
+
+.project {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 100px 200px;
+  grid-template-columns: 1fr 2fr;
+}
+
+.project__header {
+  font-size: 36px;
+  font-weight: 500px;
+  margin-bottom: 24px;
+}
+
+.project__text {
+  font-size: 1.7rem;
+  margin-bottom: 56px;
+  color: #666;
+}
+
+.project__author {
+  margin-left: 48px;
+  font-style: normal;
+
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  column-gap: 32px;
+}
+
+.project__photo {
+  grid-row: 1 / span 2;
+  width: 104px;
+  border-radius: 50%;
+}
+
+.project__name {
+  font-size: 28px;
+  font-weight: 500;
+  align-self: end;
+  margin: 0;
+}
+
+.project__location {
+  font-size: 24px;
+}
+
+.section__title--tproject {
+  margin-bottom: 64px;
+}
+
+/* ===================== FOOTER ===================== */
+.footer {
+  padding: 240px 120px;
+  background-color: #37383d;
+}
+
+.footer__nav {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+}
+
+.footer__link {
+  font-size: 25px;
+  color: #eee;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer__link:hover {
+  color: var(--primary);
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 900px) {
+  .header {
+    padding: 24px;
+  }
+
+  .header_title {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .person_img {
+    justify-self: center;
+    margin-top: 40px;
+  }
+
+  .section {
+    padding: 72px 24px;
+  }
+
+  #section--about {
+    grid-template-columns: 1fr;
+  }
+
+  .skills__tab-container {
+    grid-template-columns: 1fr;
+  }
+
+  .slider__btn {
+    display: none;
+  }
+}

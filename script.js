@@ -1,12 +1,32 @@
 /* Page Navigation */
 
-document.querySelectorAll(".nav__link").forEach(function (el) {
+document.querySelectorAll(".nav_link").forEach(function (el) {
   el.addEventListener("click", function (e) {
     e.preventDefault();
     const id = this.getAttribute("href");
     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   });
 });
+
+// Navbar fade animation
+
+const nav = document.querySelector(".header_nav");
+
+const handleHover = function (e) {
+  if (e.target.classList.contains("nav_link")) {
+    const link = e.target;
+    const siblings = link.closest(".header_nav").querySelectorAll(".nav_link");
+    const logo = link.closest(".header_nav").querySelector(".head_logo");
+
+    siblings.forEach((el) => {
+      if (el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+
+nav.addEventListener("mouseover", handleHover.bind(0.5));
+nav.addEventListener("mouseout", handleHover.bind(1));
 
 /* Button Scroll To Section 1 */
 
@@ -31,8 +51,8 @@ btnScrollTo.addEventListener("click", function (e) {
 /* Project Section (Slider) */
 
 const slides = document.querySelectorAll(".slide");
-const btnLeft = document.querySelector(".slider__btn--left");
-const btnRight = document.querySelector(".slider__btn--right");
+const btnLeft = document.querySelector(".slider_btn--left");
+const btnRight = document.querySelector(".slider_btn--right");
 const dotContainer = document.querySelector(".dots");
 const maxSlide = slides.length;
 
@@ -43,19 +63,19 @@ const slider = function () {
     slides.forEach(function (s, i) {
       dotContainer.insertAdjacentHTML(
         "beforeend",
-        `<button class="dots__dot" data-slide="${i}"></button>`,
+        `<button class="dots_dot" data-slide="${i}"></button>`,
       );
     });
   };
 
   const activateDot = function (slide) {
     document
-      .querySelectorAll(".dots__dot")
-      .forEach((dot) => dot.classList.remove("dots__dot--active"));
+      .querySelectorAll(".dots_dot")
+      .forEach((dot) => dot.classList.remove("dots_dot--active"));
 
     document
-      .querySelector(`.dots__dot[data-slide="${slide}"]`)
-      .classList.add("dots__dot--active");
+      .querySelector(`.dots_dot[data-slide="${slide}"]`)
+      .classList.add("dots_dot--active");
   };
 
   const goToSlide = function (slide) {
@@ -104,7 +124,7 @@ const slider = function () {
   });
 
   dotContainer.addEventListener("click", function (e) {
-    if (e.target.classList.contains("dots__dot")) {
+    if (e.target.classList.contains("dots_dot")) {
       curSlide = Number(e.target.dataset.slide);
       goToSlide(curSlide);
       activateDot(curSlide);
@@ -115,27 +135,26 @@ slider();
 
 /* Skills Section */
 
-const tabs = document.querySelectorAll(".skills__tab");
-const tabsContainer = document.querySelector(".skills__tab-container");
-const tabsContent = document.querySelectorAll(".skills__content");
+const tabs = document.querySelectorAll(".skills_tab");
+const tabsContainer = document.querySelector(".skills_tab-container");
+const tabsContent = document.querySelectorAll(".skills_content");
 
 tabsContainer.addEventListener("click", function (e) {
-  const clicked = e.target.closest(".skills__tab");
+  const clicked = e.target.closest(".skills_tab");
 
   //Guard clause
   if (!clicked) return;
 
   //Remove active classes
-  tabs.forEach((t) => t.classList.remove("skills__tab--active"));
-  tabsContent.forEach((c) => c.classList.remove("skills__content--active"));
+  tabs.forEach((t) => t.classList.remove("skills_tab--active"));
+  tabsContent.forEach((c) => c.classList.remove("skills_content--active"));
 
   //Activate tab
-  clicked.classList.add("skills__tab--active");
-
+  clicked.classList.add("skills_tab--active");
   //Activate content area
   console.log(clicked.dataset.tab);
 
   document
-    .querySelector(`.skills__content--${clicked.dataset.tab}`)
-    .classList.add("skills__content--active");
+    .querySelector(`.skills_content--${clicked.dataset.tab}`)
+    .classList.add("skills_content--active");
 });

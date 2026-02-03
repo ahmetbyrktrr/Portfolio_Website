@@ -1,3 +1,17 @@
+//Variables
+const nav = document.querySelector(".header_nav");
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--projects");
+const slides = document.querySelectorAll(".slide");
+const btnLeft = document.querySelector(".slider_btn--left");
+const btnRight = document.querySelector(".slider_btn--right");
+const dotContainer = document.querySelector(".dots");
+const maxSlide = slides.length;
+const tabs = document.querySelectorAll(".skills_tab");
+const tabsContainer = document.querySelector(".skills_tab-container");
+const tabsContent = document.querySelectorAll(".skills_content");
+const section1Coords = section1.getBoundingClientRect();
+
 /* Page Navigation */
 
 document.querySelectorAll(".nav_link").forEach(function (el) {
@@ -9,8 +23,6 @@ document.querySelectorAll(".nav_link").forEach(function (el) {
 });
 
 // Navbar fade animation
-
-const nav = document.querySelector(".header_nav");
 
 const handleHover = function (e) {
   if (e.target.classList.contains("nav_link")) {
@@ -28,10 +40,19 @@ const handleHover = function (e) {
 nav.addEventListener("mouseover", handleHover.bind(0.5));
 nav.addEventListener("mouseout", handleHover.bind(1));
 
-/* Button Scroll To Section 1 */
+// Sticky navbar fade effect
 
-const btnScrollTo = document.querySelector(".btn--scroll-to");
-const section1 = document.querySelector("#section--projects");
+window.addEventListener("scroll", function () {
+  console.log(this.window.scrollY);
+
+  if (window.scrollY > section1Coords.top) {
+    nav.classList.add("sticky");
+  } else {
+    nav.classList.remove("sticky");
+  }
+});
+
+/* Button Scroll To Section 1 */
 
 btnScrollTo.addEventListener("click", function (e) {
   e.preventDefault();
@@ -49,12 +70,6 @@ btnScrollTo.addEventListener("click", function (e) {
 
 //
 /* Project Section (Slider) */
-
-const slides = document.querySelectorAll(".slide");
-const btnLeft = document.querySelector(".slider_btn--left");
-const btnRight = document.querySelector(".slider_btn--right");
-const dotContainer = document.querySelector(".dots");
-const maxSlide = slides.length;
 
 const slider = function () {
   let curSlide = 0;
@@ -134,10 +149,6 @@ const slider = function () {
 slider();
 
 /* Skills Section */
-
-const tabs = document.querySelectorAll(".skills_tab");
-const tabsContainer = document.querySelector(".skills_tab-container");
-const tabsContent = document.querySelectorAll(".skills_content");
 
 tabsContainer.addEventListener("click", function (e) {
   const clicked = e.target.closest(".skills_tab");

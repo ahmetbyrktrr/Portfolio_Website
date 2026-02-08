@@ -5,7 +5,8 @@
 const nav = document.querySelector(".header_nav");
 const btnScrollTo = document.querySelector(".btn--scroll-to");
 const section1 = document.querySelector("#section--projects");
-const slides = document.querySelectorAll(".slide");
+const sliderr = document.querySelector(".slider");
+const slides = sliderr.querySelectorAll(".slide");
 const btnLeft = document.querySelector(".slider_btn--left");
 const btnRight = document.querySelector(".slider_btn--right");
 const dotContainer = document.querySelector(".dots");
@@ -13,8 +14,8 @@ const maxSlide = slides.length;
 const tabs = document.querySelectorAll(".skills_tab");
 const tabsContainer = document.querySelector(".skills_tab_container");
 const tabsContent = document.querySelectorAll(".skills_content");
-const section1Coords = section1.getBoundingClientRect();
 const imgTargets = document.querySelectorAll("img[data-src]");
+const navHeight = nav.getBoundingClientRect().height;
 
 //////////////////////////////////////////////////////////
 // Page Navigation ///////////////////////////////////////
@@ -38,6 +39,8 @@ const handleHover = function (e) {
     const siblings = link.closest(".header_nav").querySelectorAll(".nav_link");
     const logo = link.closest(".header_nav").querySelector(".head_logo");
 
+    if (!logo) return;
+
     siblings.forEach((el) => {
       if (el !== link) el.style.opacity = this;
     });
@@ -52,15 +55,20 @@ nav.addEventListener("mouseout", handleHover.bind(1));
 // Sticky navbar fade effect /////////////////////////////
 //////////////////////////////////////////////////////////
 
-window.addEventListener("scroll", function () {
-  console.log(this.window.scrollY);
+const headerObserver = new IntersectionObserver(
+  function (entries) {
+    const [entry] = entries;
+    if (!entry.isIntersecting) nav.classList.add("sticky");
+    else nav.classList.remove("sticky");
+  },
+  {
+    root: null,
+    threshold: 0,
+    rootMargin: `-${navHeight}px`,
+  },
+);
 
-  if (window.scrollY > section1Coords.top) {
-    nav.classList.add("sticky");
-  } else {
-    nav.classList.remove("sticky");
-  }
-});
+headerObserver.observe(section1);
 
 //////////////////////////////////////////////////////////
 // Button Scroll To Section-1 ////////////////////////////
@@ -195,25 +203,25 @@ document.querySelectorAll(".project_image_container").forEach((container) => {
 // Skills Section ////////////////////////////////////////
 //////////////////////////////////////////////////////////
 
-tabsContainer.addEventListener("click", function (e) {
-  const clicked = e.target.closest(".skills_tab");
+if (tabsContainer) {
+  tabsContainer.addEventListener("click", function (e) {
+    const clicked = e.target.closest(".skills_tab");
 
-  //Guard clause
-  if (!clicked) return;
+    //Guard clause
+    if (!clicked) return;
 
-  //Remove active classes
-  tabs.forEach((t) => t.classList.remove("skills_tab--active"));
-  tabsContent.forEach((c) => c.classList.remove("skills_content--active"));
+    //Remove active classes
+    tabs.forEach((t) => t.classList.remove("skills_tab--active"));
+    tabsContent.forEach((c) => c.classList.remove("skills_content--active"));
 
-  //Activate tab
-  clicked.classList.add("skills_tab--active");
-  //Activate content area
-  console.log(clicked.dataset.tab);
-
-  document
-    .querySelector(`.skills_content--${clicked.dataset.tab}`)
-    .classList.add("skills_content--active");
-});
+    //Activate tab
+    clicked.classList.add("skills_tab--active");
+    //Activate content area
+    document
+      .querySelector(`.skills_content--${clicked.dataset.tab}`)
+      .classList.add("skills_content--active");
+  });
+}
 
 //////////////////////////////////////////////////////////
 // Lazy Loading Images ///////////////////////////////////

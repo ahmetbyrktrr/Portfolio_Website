@@ -232,9 +232,8 @@ body {
 
 /* ===================== LAZY IMAGE ===================== */
 .lazy_img {
-  filter: blur(16px);
-  transform: scale(1.05);
-  transition: all 0.6s ease;
+  filter: blur(20px);
+  transition: filter 0.5s;
 }
 
 .lazy_img.loaded {
@@ -257,7 +256,7 @@ body {
   margin-top: 96px;
 }
 
-.skills_tab-container {
+.skills_tab_container {
   display: flex;
   justify-content: center;
   gap: 36px;

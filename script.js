@@ -1,4 +1,7 @@
-//Variables
+//////////////////////////////////////////////////////////
+// Variables /////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
 const nav = document.querySelector(".header_nav");
 const btnScrollTo = document.querySelector(".btn--scroll-to");
 const section1 = document.querySelector("#section--projects");
@@ -8,12 +11,14 @@ const btnRight = document.querySelector(".slider_btn--right");
 const dotContainer = document.querySelector(".dots");
 const maxSlide = slides.length;
 const tabs = document.querySelectorAll(".skills_tab");
-const tabsContainer = document.querySelector(".skills_tab-container");
+const tabsContainer = document.querySelector(".skills_tab_container");
 const tabsContent = document.querySelectorAll(".skills_content");
 const section1Coords = section1.getBoundingClientRect();
 const imgTargets = document.querySelectorAll("img[data-src]");
 
-/* Page Navigation */
+//////////////////////////////////////////////////////////
+// Page Navigation ///////////////////////////////////////
+//////////////////////////////////////////////////////////
 
 document.querySelectorAll(".nav_link").forEach(function (el) {
   el.addEventListener("click", function (e) {
@@ -23,7 +28,9 @@ document.querySelectorAll(".nav_link").forEach(function (el) {
   });
 });
 
-// Navbar fade animation
+//////////////////////////////////////////////////////////
+// Navbar fade animation /////////////////////////////////
+//////////////////////////////////////////////////////////
 
 const handleHover = function (e) {
   if (e.target.classList.contains("nav_link")) {
@@ -41,7 +48,9 @@ const handleHover = function (e) {
 nav.addEventListener("mouseover", handleHover.bind(0.5));
 nav.addEventListener("mouseout", handleHover.bind(1));
 
-// Sticky navbar fade effect
+//////////////////////////////////////////////////////////
+// Sticky navbar fade effect /////////////////////////////
+//////////////////////////////////////////////////////////
 
 window.addEventListener("scroll", function () {
   console.log(this.window.scrollY);
@@ -53,7 +62,9 @@ window.addEventListener("scroll", function () {
   }
 });
 
-/* Button Scroll To Section 1 */
+//////////////////////////////////////////////////////////
+// Button Scroll To Section-1 ////////////////////////////
+//////////////////////////////////////////////////////////
 
 btnScrollTo.addEventListener("click", function (e) {
   e.preventDefault();
@@ -69,8 +80,9 @@ btnScrollTo.addEventListener("click", function (e) {
   //   });
 });
 
-//
-/* Project Section (Slider) */
+//////////////////////////////////////////////////////////
+// Project Section (Slider) //////////////////////////////
+//////////////////////////////////////////////////////////
 
 const slider = function () {
   let curSlide = 0;
@@ -149,7 +161,39 @@ const slider = function () {
 };
 slider();
 
-/* Skills Section */
+//////////////////////////////////////////////////////////
+//Project Image Slider ///////////////////////////////////
+//////////////////////////////////////////////////////////
+
+document.querySelectorAll(".project_image_container").forEach((container) => {
+  const slidesWrapper = container.querySelector(".project_images");
+  const slides = container.querySelectorAll(".project_image");
+  const btnLeft = container.querySelector(".project_btn--left");
+  const btnRight = container.querySelector(".project_btn--right");
+
+  let curSlide = 0;
+  const maxSlide = slides.length;
+
+  const goToSlide = (slide) => {
+    slidesWrapper.style.transform = `translateX(-${slide * 100}%)`;
+  };
+
+  btnRight.addEventListener("click", () => {
+    curSlide = curSlide === maxSlide - 1 ? 0 : curSlide + 1;
+    goToSlide(curSlide);
+  });
+
+  btnLeft.addEventListener("click", () => {
+    curSlide = curSlide === 0 ? maxSlide - 1 : curSlide - 1;
+    goToSlide(curSlide);
+  });
+
+  goToSlide(0);
+});
+
+//////////////////////////////////////////////////////////
+// Skills Section ////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
 tabsContainer.addEventListener("click", function (e) {
   const clicked = e.target.closest(".skills_tab");
@@ -171,7 +215,9 @@ tabsContainer.addEventListener("click", function (e) {
     .classList.add("skills_content--active");
 });
 
-// Lazy loading images
+//////////////////////////////////////////////////////////
+// Lazy Loading Images ///////////////////////////////////
+//////////////////////////////////////////////////////////
 
 const loadImg = function (entries, observer) {
   const [entry] = entries;

@@ -1,11 +1,11 @@
-/* ===================== RESET ===================== */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ===================== ROOT ===================== */
+/* ROOT */
 :root {
   --bg-main: #ffffff;
   --bg-section: #f8fafc;
@@ -463,12 +463,67 @@ body {
 }
 
 /* FOTO */
-.project_images {
+.project_image {
   grid-row: 1 / span 2;
+  width: 600px;
+  height: 352px;
+  border-radius: 8px;
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.project_images {
+  display: flex;
+  height: 100%;
+  transition: transform 0.4s ease;
   width: 564px;
   height: 352px;
-  object-fit: cover;
+}
+
+.project_image img {
+  min-width: 100%;
+}
+
+.slider_img {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+}
+
+.project_image_container {
+  position: relative;
+  width: 564px;
+  height: 352px;
+  overflow: hidden;
   border-radius: 8px;
+}
+
+.project_btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(165, 165, 165, 0.6);
+  color: #fff;
+  border: none;
+  font-size: 32px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.project_btn--left {
+  left: 16px;
+}
+
+.project_btn--right {
+  right: 16px;
+}
+
+.project_btn:hover {
+  background: rgba(251, 251, 251, 0.8);
 }
 
 /* İSİM */

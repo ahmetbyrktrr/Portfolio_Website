@@ -5,7 +5,9 @@
   box-sizing: border-box;
 }
 
-/* ROOT */
+/* ///////////////////////////////////////
+/////////////// ROOT ////////////////////
+////////////////////////////////////// */
 :root {
   --bg-main: #ffffff;
   --bg-section: #f8fafc;
@@ -50,6 +52,7 @@ body {
   position: fixed;
   background-color: rgba(255, 255, 255, 0.95);
   top: 0;
+  left: 0;
 }
 
 .head_logo {
@@ -290,13 +293,13 @@ body {
 }
 
 .skills_tab--1 {
-  background-color: #ffcb03;
+  background-color: #77aaff;
 }
 .skills_tab--2 {
-  background-color: #5ec576;
+  background-color: #bbeeff;
 }
 .skills_tab--3 {
-  background-color: #ff585f;
+  background-color: #99ccff;
 }
 
 .skills_tab:hover {
@@ -342,14 +345,6 @@ body {
 /* ===================== PROJECTS ===================== */
 #section--projects {
   background-color: var(--bg-section);
-}
-
-.project_images {
-  width: 800px;
-  height: auto;
-  display: grid;
-  grid-template-rows: 100px 200px;
-  grid-template-columns: 1fr 2fr;
 }
 
 .slider {
@@ -423,13 +418,8 @@ body {
   width: 80%;
   margin: 0 auto;
   display: grid;
-
-  /* 2 kolon: sol büyük başlık, sağ içerik */
   grid-template-columns: 1fr 1fr;
-
-  /* sağ taraf üst + alt */
   grid-template-rows: auto auto;
-
   gap: 4rem;
   align-items: start;
 }
@@ -463,20 +453,16 @@ body {
 
 /* FOTO */
 .project_image {
-  grid-row: 1 / span 2;
-  width: 600px;
-  height: 352px;
-  border-radius: 8px;
-  display: flex;
-  transition: transform 0.4s ease;
+  min-width: 100%;
+  height: 100%;
+  object-fit: contain; /* taşma yok, zoom yok */
 }
 
 .project_images {
   display: flex;
   height: 100%;
+  width: 100%;
   transition: transform 0.4s ease;
-  width: 564px;
-  height: 352px;
 }
 
 .project_image img {
